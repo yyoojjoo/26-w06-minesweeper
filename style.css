@@ -1,0 +1,248 @@
+:root {
+  color-scheme: light;
+  font-family: "Trebuchet MS", "Malgun Gothic", sans-serif;
+  color: #21304b;
+  background: #eaf0f8;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px 16px;
+  background:
+    radial-gradient(ellipse at 50% 0, #fff 0, transparent 55%),
+    #eaf0f8;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+.game {
+  width: min(100%, 760px);
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #5875a5;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+h1 {
+  margin: 0;
+  color: #263b61;
+  font-size: clamp(2rem, 7vw, 3rem);
+}
+
+.instructions {
+  margin: 10px 0 0;
+  color: #64738b;
+  font-size: 0.95rem;
+}
+
+.game-shell {
+  padding: 18px;
+  border: 1px solid #d5deea;
+  border-radius: 18px;
+  background: #f8faff;
+  box-shadow: 0 18px 45px #273a5b1a;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  color: #52627c;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.toolbar select {
+  min-height: 38px;
+  padding: 0 34px 0 12px;
+  border: 1px solid #cbd6e5;
+  border-radius: 9px;
+  color: #263b61;
+  background: #fff;
+  cursor: pointer;
+}
+
+.status-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 430px;
+  margin: 0 auto 14px;
+  padding: 10px 13px;
+  border: 1px solid #d7e0ed;
+  border-radius: 12px;
+  background: #edf2f9;
+}
+
+.digital-display {
+  min-width: 68px;
+  padding: 5px 7px;
+  border: 1px solid #24334f;
+  border-radius: 6px;
+  color: #ff5c67;
+  background: #172238;
+  font-family: "Courier New", monospace;
+  font-size: 1.7rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.restart-button {
+  display: grid;
+  width: 46px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid #c7d2e2;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 3px 0 #c7d2e2;
+  font-size: 1.55rem;
+  cursor: pointer;
+}
+
+.restart-button:hover {
+  background: #f2f6fc;
+}
+
+.restart-button:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #c7d2e2;
+}
+
+.board-viewport {
+  overflow: hidden;
+  max-width: 100%;
+  padding: 5px;
+  border: 1px solid #d5deea;
+  border-radius: 11px;
+  background: #e5ecf6;
+  overscroll-behavior-x: contain;
+}
+
+.board {
+  display: grid;
+  width: max-content;
+  grid-template-columns: repeat(var(--columns), var(--cell-size));
+  gap: 2px;
+  margin: 0 auto;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.cell {
+  display: grid;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  color: #21304b;
+  background: #bac9dd;
+  box-shadow: inset 2px 2px 0 #e6edf6, inset -2px -2px 0 #91a4bf;
+  font-size: calc(var(--cell-size) * 0.62);
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.cell:hover:not(.revealed) {
+  background: #c9d6e7;
+}
+
+.cell:focus-visible,
+.restart-button:focus-visible,
+.toolbar select:focus-visible {
+  outline: 3px solid #5b8def;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.cell.revealed {
+  background: #f8faff;
+  box-shadow: inset 0 0 0 1px #dbe3ee;
+  cursor: default;
+}
+
+.cell.flagged,
+.cell.questioned {
+  color: #293b5b;
+}
+
+.cell.mine-hit {
+  background: #ff8b90;
+}
+
+.cell.mine-shown {
+  background: #e9edf4;
+}
+
+.cell.wrong-flag {
+  background: #ffe1e2;
+}
+
+.number-1 { color: #2870d5; }
+.number-2 { color: #23905a; }
+.number-3 { color: #d34646; }
+.number-4 { color: #664bb1; }
+.number-5 { color: #a64232; }
+.number-6 { color: #168c91; }
+.number-7 { color: #263449; }
+.number-8 { color: #667085; }
+
+.game-message {
+  min-height: 1.4em;
+  margin: 14px 0 0;
+  color: #64738b;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.game-message[data-state="won"] {
+  color: #188451;
+  font-weight: 800;
+}
+
+.game-message[data-state="lost"] {
+  color: #c33c48;
+  font-weight: 800;
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 24px 10px;
+  }
+
+  .game-shell {
+    padding: 12px;
+  }
+
+  .instructions {
+    font-size: 0.85rem;
+  }
+}
