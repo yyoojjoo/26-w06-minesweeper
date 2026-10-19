@@ -168,13 +168,31 @@ function revealCell(cell) {
   }
 }
 
-function toggleFlag(cell) {
-  if (gameOver || cell.revealed) {
+function chordCell(cell) {
+  if (gameOver || !cell.revealed || cell.adjacentMines === 0) {
     return;
   }
 
-  if (!cell.flagged && flagsPlaced >= MINE_COUNT) {
-    messageElement.textContent = "깃발은 최대 10개까지 꽂을 수 있어요.";
+  const neighbors = getNeighbors(cell.index);
+  const flaggedNeighbors = neighbors.filter((neighbor) => neighbor.flagged).length;
+
+  if (flaggedNeighbors !== cell.adjacentMines) {
+    return;
+  }
+
+  for (const neighbor of neighbors) {
+    if (!neighbor.revealed && !neighbor.flagged) {
+      revealCell(neighbor);
+
+      if (gameOver) {
+        return;
+      }
+    }
+  }
+}
+
+function toggleFlag(cell) {
+  if (gameOver || cell.revealed) {
     return;
   }
 
@@ -233,6 +251,12 @@ function startNewGame() {
     button.type = "button";
     button.setAttribute("role", "gridcell");
     button.addEventListener("click", () => revealCell(cell));
+    button.addEventListener("mousedown", (event) => {
+      if (event.buttons === 3 && cell.revealed) {
+        event.preventDefault();
+        chordCell(cell);
+      }
+    });
     button.addEventListener("contextmenu", (event) => {
       event.preventDefault();
       toggleFlag(cell);
