@@ -1,8 +1,8 @@
 :root {
-  color-scheme: light;
+  color-scheme: dark;
   font-family: "Trebuchet MS", "Malgun Gothic", sans-serif;
-  color: #21304b;
-  background: #eaf0f8;
+  color: #e6e9ef;
+  background: #111317;
   font-synthesis: none;
 }
 
@@ -14,10 +14,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  padding: 40px 16px;
+  padding: 28px 24px;
   background:
-    radial-gradient(ellipse at 50% 0, #fff 0, transparent 55%),
-    #eaf0f8;
+    radial-gradient(ellipse at 50% 0, #343a43 0, transparent 58%),
+    #111317;
 }
 
 button,
@@ -26,18 +26,18 @@ select {
 }
 
 .game {
-  width: min(100%, 760px);
+  width: min(100%, 1440px);
   margin: 0 auto;
 }
 
 .page-header {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
 .eyebrow {
   margin: 0 0 6px;
-  color: #5875a5;
+  color: #aeb6c2;
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.2em;
@@ -45,22 +45,22 @@ select {
 
 h1 {
   margin: 0;
-  color: #263b61;
-  font-size: clamp(2rem, 7vw, 3rem);
+  color: #f3f5f8;
+  font-size: clamp(2.4rem, 7vw, 3.5rem);
 }
 
 .instructions {
   margin: 10px 0 0;
-  color: #64738b;
+  color: #a5acb7;
   font-size: 0.95rem;
 }
 
 .game-shell {
-  padding: 18px;
-  border: 1px solid #d5deea;
+  padding: 24px;
+  border: 1px solid #535a64;
   border-radius: 18px;
-  background: #f8faff;
-  box-shadow: 0 18px 45px #273a5b1a;
+  background: linear-gradient(145deg, #282c32, #1c1f24);
+  box-shadow: 0 20px 55px #0008, inset 0 1px #ffffff12;
 }
 
 .toolbar {
@@ -68,8 +68,8 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 14px;
-  color: #52627c;
+  margin-bottom: 18px;
+  color: #c3c8d0;
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -77,10 +77,10 @@ h1 {
 .toolbar select {
   min-height: 38px;
   padding: 0 34px 0 12px;
-  border: 1px solid #cbd6e5;
+  border: 1px solid #666e79;
   border-radius: 9px;
-  color: #263b61;
-  background: #fff;
+  color: #edf0f4;
+  background: #292d33;
   cursor: pointer;
 }
 
@@ -89,23 +89,25 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  max-width: 430px;
-  margin: 0 auto 14px;
-  padding: 10px 13px;
-  border: 1px solid #d7e0ed;
+  max-width: 520px;
+  margin: 0 auto 18px;
+  padding: 12px 16px;
+  border: 1px solid #515862;
   border-radius: 12px;
-  background: #edf2f9;
+  background: linear-gradient(180deg, #393e46, #292d33);
+  box-shadow: inset 0 1px #ffffff0d;
 }
 
 .digital-display {
-  min-width: 68px;
-  padding: 5px 7px;
-  border: 1px solid #24334f;
+  min-width: 78px;
+  padding: 7px 9px;
+  border: 1px solid #707985;
   border-radius: 6px;
-  color: #ff5c67;
-  background: #172238;
+  color: #ff626b;
+  background: #090a0c;
+  box-shadow: inset 0 2px 8px #000, 0 1px #ffffff12;
   font-family: "Courier New", monospace;
-  font-size: 1.7rem;
+  font-size: 2rem;
   font-weight: 700;
   line-height: 1;
   text-align: center;
@@ -114,33 +116,33 @@ h1 {
 
 .restart-button {
   display: grid;
-  width: 46px;
-  height: 42px;
+  width: 52px;
+  height: 48px;
   place-items: center;
-  border: 1px solid #c7d2e2;
+  border: 1px solid #777f8a;
   border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 3px 0 #c7d2e2;
-  font-size: 1.55rem;
+  background: linear-gradient(145deg, #f1f3f6, #aeb5bf);
+  box-shadow: 0 3px 0 #737b86, inset 0 1px #fff;
+  font-size: 1.8rem;
   cursor: pointer;
 }
 
 .restart-button:hover {
-  background: #f2f6fc;
+  background: linear-gradient(145deg, #fff, #c6ccd4);
 }
 
 .restart-button:active {
   transform: translateY(2px);
-  box-shadow: 0 1px 0 #c7d2e2;
+  box-shadow: 0 1px 0 #737b86;
 }
 
 .board-viewport {
   overflow: hidden;
   max-width: 100%;
   padding: 5px;
-  border: 1px solid #d5deea;
+  border: 1px solid #4c535d;
   border-radius: 11px;
-  background: #e5ecf6;
+  background: #111317;
   overscroll-behavior-x: contain;
 }
 
@@ -162,9 +164,9 @@ h1 {
   padding: 0;
   border: 0;
   border-radius: 3px;
-  color: #21304b;
-  background: #bac9dd;
-  box-shadow: inset 2px 2px 0 #e6edf6, inset -2px -2px 0 #91a4bf;
+  color: #f0f2f5;
+  background: linear-gradient(145deg, #656d78, #444a53);
+  box-shadow: inset 2px 2px 0 #9ba2ac, inset -2px -2px 0 #30353c;
   font-size: calc(var(--cell-size) * 0.62);
   font-weight: 900;
   line-height: 1;
@@ -172,74 +174,76 @@ h1 {
 }
 
 .cell:hover:not(.revealed) {
-  background: #c9d6e7;
+  background: linear-gradient(145deg, #7c8591, #555d67);
 }
 
 .cell:focus-visible,
 .restart-button:focus-visible,
 .toolbar select:focus-visible {
-  outline: 3px solid #5b8def;
+  outline: 3px solid #d7dde5;
   outline-offset: 2px;
   z-index: 1;
 }
 
 .cell.revealed {
-  background: #f8faff;
-  box-shadow: inset 0 0 0 1px #dbe3ee;
+  background: #d7dbe1;
+  box-shadow: inset 0 0 0 1px #f5f6f8;
+  color: #20242a;
   cursor: default;
 }
 
 .cell.flagged,
 .cell.questioned {
-  color: #293b5b;
+  color: #171a1e;
 }
 
 .cell.mine-hit {
-  background: #ff8b90;
+  background: #bb424b;
 }
 
 .cell.mine-shown {
-  background: #e9edf4;
+  background: #969da7;
 }
 
 .cell.wrong-flag {
-  background: #ffe1e2;
+  background: #8c3f45;
+  color: #fff;
 }
 
-.number-1 { color: #2870d5; }
-.number-2 { color: #23905a; }
-.number-3 { color: #d34646; }
-.number-4 { color: #664bb1; }
-.number-5 { color: #a64232; }
-.number-6 { color: #168c91; }
-.number-7 { color: #263449; }
-.number-8 { color: #667085; }
+.number-1 { color: #2768ad; }
+.number-2 { color: #287448; }
+.number-3 { color: #b3383f; }
+.number-4 { color: #634c91; }
+.number-5 { color: #9a4936; }
+.number-6 { color: #26777a; }
+.number-7 { color: #171a1e; }
+.number-8 { color: #555d67; }
 
 .game-message {
   min-height: 1.4em;
   margin: 14px 0 0;
-  color: #64738b;
+  color: #a5acb7;
   font-size: 0.9rem;
   text-align: center;
 }
 
 .game-message[data-state="won"] {
-  color: #188451;
+  color: #82d0a2;
   font-weight: 800;
 }
 
 .game-message[data-state="lost"] {
-  color: #c33c48;
+  color: #ff858b;
   font-weight: 800;
 }
 
 @media (max-width: 520px) {
   body {
-    padding: 24px 10px;
+    padding: 18px 10px;
   }
 
   .game-shell {
-    padding: 12px;
+    padding: 14px;
   }
 
   .instructions {

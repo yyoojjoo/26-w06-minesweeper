@@ -54,7 +54,7 @@ function fitBoard() {
   const availableHeight = window.innerHeight - boardViewport.getBoundingClientRect().top - 68;
   const horizontalCellSize = Math.floor((availableWidth - 2 * (columns - 1)) / columns);
   const verticalCellSize = Math.floor((availableHeight - 2 * (rows - 1)) / rows);
-  const cellSize = Math.max(1, Math.min(34, horizontalCellSize, verticalCellSize));
+  const cellSize = Math.max(1, Math.min(42, horizontalCellSize, verticalCellSize));
   boardElement.style.setProperty("--cell-size", `${cellSize}px`);
 }
 
