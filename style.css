@@ -1,0 +1,253 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap");
+
+:root {
+  color-scheme: dark;
+  font-family: "DM Sans", "Noto Sans KR", sans-serif;
+  color: #e5ece5;
+  background: #111713;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background:
+    radial-gradient(ellipse at 15% 10%, #202c23 0, transparent 38%),
+    radial-gradient(ellipse at 90% 90%, #1d2820 0, transparent 34%),
+    #111713;
+}
+
+button {
+  font: inherit;
+}
+
+.game-card {
+  width: min(100%, 460px);
+  padding: 32px;
+  border: 1px solid #303b32;
+  border-radius: 24px;
+  background: #1b231d;
+  box-shadow: 0 20px 60px rgb(0 0 0 / 30%);
+}
+
+.game-header {
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #91b297;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+
+.subtitle {
+  margin: 8px 0 24px;
+  color: #a4afa5;
+  font-size: 13px;
+}
+
+.game-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: 1px solid #343f35;
+  border-radius: 16px;
+  background: #222c24;
+}
+
+.counter {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+  column-gap: 7px;
+  color: #e2ebe2;
+  font-size: 17px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.counter-icon {
+  font-size: 15px;
+}
+
+.counter-label {
+  grid-column: 2;
+  color: #a5b0a6;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.restart-button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid #3c493e;
+  border-radius: 13px;
+  background: #263128;
+  cursor: pointer;
+  font-size: 23px;
+  line-height: 1;
+  transition:
+    transform 150ms ease,
+    background-color 150ms ease;
+}
+
+.restart-button:hover {
+  transform: scale(1.08);
+  background: #344238;
+}
+
+.restart-button:focus-visible,
+.cell:focus-visible {
+  outline: 3px solid #8fbd91;
+  outline-offset: 2px;
+}
+
+.game-message {
+  min-height: 20px;
+  margin: 16px 0 12px;
+  color: #aab5ab;
+  font-size: 12px;
+  text-align: center;
+}
+
+.game-message[data-state="won"] {
+  color: #8bd394;
+  font-weight: 700;
+}
+
+.game-message[data-state="lost"] {
+  color: #ff9187;
+  font-weight: 700;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 0;
+  padding: 8px;
+  border: 2px solid #56695a;
+  border-radius: 17px;
+  background: #202a22;
+  touch-action: manipulation;
+}
+
+.cell {
+  display: grid;
+  aspect-ratio: 1;
+  place-items: center;
+  min-width: 0;
+  padding: 0;
+  border: 1px solid #667d69;
+  border-radius: 0;
+  background: #35483a;
+  color: #e6efe6;
+  cursor: pointer;
+  font-size: clamp(13px, 4vw, 18px);
+  font-weight: 800;
+  transition:
+    background-color 100ms ease,
+    transform 100ms ease;
+}
+
+.cell:not(.revealed):hover {
+  transform: translateY(-1px);
+  background: #435a47;
+}
+
+.cell.revealed {
+  border-color: #435347;
+  background: #202a22;
+  cursor: default;
+}
+
+.cell.flagged {
+  border-color: #a98c45;
+  background: #403821;
+}
+
+.cell.mine {
+  border-color: #97514b;
+  background: #492a28;
+}
+
+.cell.exploded {
+  border-color: #ff766c;
+  background: #a73f39;
+}
+
+.cell[data-neighbors="1"] {
+  color: #82b7ff;
+}
+
+.cell[data-neighbors="2"] {
+  color: #83d68e;
+}
+
+.cell[data-neighbors="3"] {
+  color: #ff827a;
+}
+
+.cell[data-neighbors="4"] {
+  color: #c1a0ff;
+}
+
+.cell[data-neighbors="5"],
+.cell[data-neighbors="6"],
+.cell[data-neighbors="7"],
+.cell[data-neighbors="8"] {
+  color: #ffc084;
+}
+
+.game-footer {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 18px;
+  color: #a4afa5;
+  font-size: 10px;
+}
+
+kbd {
+  padding: 3px 6px;
+  border: 1px solid #3b473d;
+  border-radius: 5px;
+  background: #232d25;
+  color: #c3cec4;
+  font: inherit;
+}
+
+@media (max-width: 420px) {
+  .game-card {
+    padding: 24px 18px;
+  }
+
+  .board {
+    gap: 0;
+    padding: 8px;
+  }
+
+  .game-footer {
+    gap: 10px;
+  }
+}
