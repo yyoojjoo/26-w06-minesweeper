@@ -10,11 +10,11 @@ const boardElement = document.querySelector("#board");
 const counterElement = document.querySelector("#mine-counter");
 const timerElement = document.querySelector("#timer");
 const restartButton = document.querySelector("#restart");
-const difficultySelect = document.querySelector("#difficulty");
+const difficultyButtons = document.querySelectorAll("[data-difficulty]");
 const messageElement = document.querySelector("#game-message");
 const boardViewport = document.querySelector(".board-viewport");
 
-let difficulty = DIFFICULTIES[difficultySelect.value];
+let difficulty = DIFFICULTIES.easy;
 let cells = [];
 let gameState = "ready";
 let minesPlaced = false;
@@ -50,11 +50,13 @@ function updateTimer() {
 function fitBoard() {
   const columns = difficulty.columns;
   const rows = difficulty.rows;
-  const availableWidth = boardViewport.clientWidth - 10;
+  const shellStyle = window.getComputedStyle(boardViewport.parentElement);
+  const horizontalPadding = Number.parseFloat(shellStyle.paddingLeft) + Number.parseFloat(shellStyle.paddingRight);
+  const availableWidth = boardViewport.parentElement.clientWidth - horizontalPadding;
   const availableHeight = window.innerHeight - boardViewport.getBoundingClientRect().top - 68;
-  const horizontalCellSize = Math.floor((availableWidth - 2 * (columns - 1)) / columns);
+  const horizontalCellSize = Math.floor((availableWidth - 16 - 2 * (columns - 1)) / columns);
   const verticalCellSize = Math.floor((availableHeight - 2 * (rows - 1)) / rows);
-  const cellSize = Math.max(1, Math.min(42, horizontalCellSize, verticalCellSize));
+  const cellSize = Math.max(1, Math.min(32, horizontalCellSize, verticalCellSize));
   boardElement.style.setProperty("--cell-size", `${cellSize}px`);
 }
 
@@ -120,7 +122,16 @@ function initializeBoard() {
   updateCounter();
   updateTimer();
   updateFace("🙂");
+  for (const button of difficultyButtons) {
+    const selected = button.dataset.difficulty === difficultySelectKey();
+    button.classList.toggle("is-selected", selected);
+    button.setAttribute("aria-pressed", String(selected));
+  }
   setMessage(`${difficulty.label} 난이도 · 첫 칸은 안전합니다.`);
+}
+
+function difficultySelectKey() {
+  return Object.entries(DIFFICULTIES).find(([, settings]) => settings === difficulty)?.[0] ?? "easy";
 }
 
 function placeMines(firstCell) {
@@ -318,10 +329,12 @@ document.addEventListener("keydown", (event) => {
 });
 
 restartButton.addEventListener("click", initializeBoard);
-difficultySelect.addEventListener("change", () => {
-  difficulty = DIFFICULTIES[difficultySelect.value];
-  initializeBoard();
-});
+for (const button of difficultyButtons) {
+  button.addEventListener("click", () => {
+    difficulty = DIFFICULTIES[button.dataset.difficulty];
+    initializeBoard();
+  });
+}
 
 window.addEventListener("resize", fitBoard);
 if ("ResizeObserver" in window) {
